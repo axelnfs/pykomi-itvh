@@ -4,9 +4,9 @@ import string
 class Producto:
     id = int
     nombre = str
-    app = string
-    apm = string
-    email = string
+    app = str
+    apm = str
+    email = str
 
 
     def __init__(self, nombre, app, apm, email):
