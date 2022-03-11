@@ -6,12 +6,12 @@ class Producto:
     nombre = str
     precio = float
     inventario = int
-    Proveedor = Persona("","","","","","","")
+    Proveedor = Persona("","","","")
     Categoria = Categoria("")
 
-    def __init__(self, nombre, precio, inventario, idProveedor, idCategoria):
+    def __init__(self, nombre, precio, inventario, Proveedor, Categoria):
         self.nombre = nombre
         self.precio = precio
         self.inventario = inventario
-        self.idProveedor = idProveedor
-        self.idCategoria = idCategoria
+        self.Proveedor = Proveedor
+        self.Categoria = Categoria

@@ -1,7 +1,7 @@
 import string
 
 
-class Producto:
+class Persona:
     id = int
     nombre = str
     app = str
