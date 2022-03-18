@@ -13,7 +13,7 @@ mydb = mysql.connector.connect(
 
 def verEmpleados():
     micursor = mydb.cursor()
-    micursor.execute("SELECT * FROM Empleados")
+    micursor.execute("SELECT * FROM Empleados;")
     for x in micursor:
         print (x)
 
@@ -24,16 +24,16 @@ def crearEmpleados(nombre, app, apm, rfc, idCargo, password):
 
 def despedirEmpleados(idEmpleado):
     micursor = mydb.cursor()
-    micursor.execute('DELETE FROM Empleados WHERE id = '+str(idEmpleado)+'')
+    micursor.execute('DELETE FROM Empleados WHERE id = '+str(idEmpleado)+';')
     mydb.commit()
 
-def buscarEmpleados(idEmpleado):
+def buscarEmpleado(idEmpleado):
     micursor = mydb.cursor()
-    micursor.execute('SELECT * FROM Empleados WHERE id = '+str(idEmpleado)+'')
+    micursor.execute('SELECT * FROM Empleados WHERE id = '+str(idEmpleado)+';')
 
 def verClientes():
     micursor = mydb.cursor()
-    micursor.execute("SELECT * FROM Clientes")
+    micursor.execute("SELECT * FROM Clientes;")
     for x in micursor:
         print (x)
 
@@ -44,7 +44,7 @@ def crearClientes(nombre, app, apm, email):
 
 def verProveedores():
     micursor = mydb.cursor()
-    micursor.execute("SELECT * FROM Proveedores")
+    micursor.execute("SELECT * FROM Proveedores;")
     for x in micursor:
         print (x)
 
@@ -55,9 +55,16 @@ def crearProveedores(nombre, app, apm, email, pais, nombreEmpresa):
 
 def eliminarProveedores(idProveedor):
     micursor = mydb.cursor()
-    micursor.execute('DELETE FROM Proveedores WHERE id = '+str(idProveedor)+'')
+    micursor.execute('DELETE FROM Proveedores WHERE id = '+str(idProveedor)+';')
     mydb.commit()
 
+def buscarProveedor(idProveedor):
+    micursor = mydb.cursor()
+    micursor.execute('SELECT * FROM Proveedores WHERE id = '+str(idProveedor)+';')
+    result = micursor.fetchall()
+
+    for x in result:
+        return x
 
 # def eliminarClientes(idCliente):
 #     micursor = mydb.cursor()
@@ -73,6 +80,8 @@ if __name__ == "__main__":
     # eliminarProveedores(1)
     # crearProveedores("DANNA PAOLA", "SANCHEZ","SANCHEZ","danpal@mail.com","España","Tiendas ChocoTec")
     #verProveedores()
+    print(type(buscarProveedor(2)))
+
 
 
 
