@@ -1,86 +1,52 @@
-from Cliente import Cliente
-from Producto import Producto
-from Categoria import Categoria
-from Proveedor import Proveedor
+import tkinter
+from turtle import width
+from typing import Text
+import Cliente
+import Producto
+import Categoria
+import Empleado
+import Proveedor
 import mysql.connector
+import time
 
-mydb = mysql.connector.connect(
-    host = "localhost",
-    user = "admin",
-    password = "1234",
-    database = "TiendaElectronica"
-    )
+def ventanaBienvenida():
+    ventana = tkinter.Tk()
+    ventana.geometry("600x200")
+    ventana.resizable(0,0)
+    # ventana.overrideredirect(True)
+    nombrePrograma = tkinter.Label(ventana,text="Pykomi")
+    nombrePrograma.config(foreground="black", font=("courier",24))
+    nombrePrograma.pack(side=tkinter.LEFT)
+    botonCerrar = tkinter.Button(ventana, text="Cerrar mensaje de bienvenida", command=ventana.destroy)
+    botonCerrar.pack(side = tkinter.RIGHT)
+    ventana.mainloop()
 
-def verEmpleados():
-    micursor = mydb.cursor()
-    micursor.execute("SELECT * FROM Empleados;")
-    for x in micursor:
-        print (x)
-
-def crearEmpleados(nombre, app, apm, rfc, idCargo, password):
-    micursor = mydb.cursor()
-    micursor.execute('INSERT INTO Empleados(nombre, app, apm, rfc, idCargo, password) VALUES("'+nombre+'","'+app+'","'+apm+'","'+rfc+'","'+idCargo+'","'+password+'");')
-    mydb.commit()
-
-def despedirEmpleados(idEmpleado):
-    micursor = mydb.cursor()
-    micursor.execute('DELETE FROM Empleados WHERE id = '+str(idEmpleado)+';')
-    mydb.commit()
-
-def buscarEmpleado(idEmpleado):
-    micursor = mydb.cursor()
-    micursor.execute('SELECT * FROM Empleados WHERE id = '+str(idEmpleado)+';')
-
-def verClientes():
-    micursor = mydb.cursor()
-    micursor.execute("SELECT * FROM Clientes;")
-    for x in micursor:
-        print (x)
-
-def crearClientes(nombre, app, apm, email):
-    micursor = mydb.cursor()
-    micursor.execute('INSERT INTO Clientes(nombre, app, apm, email) VALUES("'+nombre+'","'+app+'","'+apm+'","'+email+'");')
-    mydb.commit()
-
-def verProveedores():
-    micursor = mydb.cursor()
-    micursor.execute("SELECT * FROM Proveedores;")
-    for x in micursor:
-        print (x)
-
-def crearProveedores(nombre, app, apm, email, pais, nombreEmpresa):
-    micursor = mydb.cursor()
-    micursor.execute('INSERT INTO Proveedores(nombre, app, apm, email, pais, nombreEmpresa) VALUES("'+nombre+'","'+app+'","'+apm+'","'+email+'","'+pais+'","'+nombreEmpresa+'");')
-    mydb.commit()
-
-def eliminarProveedores(idProveedor):
-    micursor = mydb.cursor()
-    micursor.execute('DELETE FROM Proveedores WHERE id = '+str(idProveedor)+';')
-    mydb.commit()
-
-def buscarProveedor(idProveedor):
-    micursor = mydb.cursor()
-    micursor.execute('SELECT * FROM Proveedores WHERE id = '+str(idProveedor)+';')
-    result = micursor.fetchall()
-
-    for x in result:
-        return x
-
-# def eliminarClientes(idCliente):
-#     micursor = mydb.cursor()
-#     micursor.execute('DELETE FROM Clientes WHERE id = '+str(idCliente)+'')
-#     mydb.commit()
+def ventanaPrincipal():
+    ventana = tkinter.Tk()
+    ventana.title("Menu Principal")
+    ventana.geometry("800x600")
+    botonVerEmpleados = tkinter.Button(ventana, text="Ver Empleados", width=12, height=1)
+    botonVerProveedores = tkinter.Button(ventana, text="Ver Proveedores", width=12, height=1)
+    nombreUltimasVentas = tkinter.Label(ventana,text="¡ULTIMAS VENTAS REGISTRADAS!")
+    areaUltimasVentas = tkinter.Text(ventana, height=12,width=70)
+    botonVerEmpleados.place(x=1, y=1)
+    botonVerProveedores.place(x=100, y=1)
+    nombreUltimasVentas.place(x = 100, y=28)
+    areaUltimasVentas.place(x = 100, y = 48)
+    
+    ventana.mainloop()
 
 if __name__ == "__main__":
-    #crearClientes("MARIA", "SANCHEZ", "CORDOBA", "mcor@mail.com")
     #eliminarClientes(4)
-    #verClientes()
-    #crearEmpleados("AXEL MANUEL","MOSQUEDA","DE LA CRUZ", "1MODA235", "1", "administrador")
-    #verEmpleados()
     # eliminarProveedores(1)
-    # crearProveedores("DANNA PAOLA", "SANCHEZ","SANCHEZ","danpal@mail.com","España","Tiendas ChocoTec")
     #verProveedores()
-    print(type(buscarProveedor(2)))
+    # print(type(buscarProveedor(2)))
+    # Empleado.verEmpleados()
+    # Cliente.verClientes()
+    # Proveedor.verProveedores()
+    # ventanaBienvenida()
+    # ventanaPrincipal()
+    Cliente.ventanaCliente()
 
 
 
