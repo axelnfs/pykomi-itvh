@@ -46,6 +46,7 @@ if __name__ == "__main__":
     # Proveedor.verProveedores()
     # ventanaBienvenida()
     # ventanaPrincipal()
+    #Cliente.verClientes()
     Cliente.ventanaCliente()
 
 
