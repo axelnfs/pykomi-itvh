@@ -27,6 +27,8 @@ CREATE TABLE Empleados(
     apm VARCHAR(50) NOT NULL,
     rfc VARCHAR(50) NOT NULL,
     idCargo int NOT NULL,
+    password varchar(250) not null,
+    vigencia TINYINT not null DEFAULT 1,
     PRIMARY KEY (id),
     FOREIGN KEY (idCargo) REFERENCES Cargos(id)
 );

@@ -4,9 +4,13 @@
 
 #     def __init__(self, nombre, app, apm, email):
 #         super().__init__(nombre, app, apm, email)
+from cProfile import label
+from faulthandler import disable
 import mysql.connector
 import tkinter
-from tkinter import ttk
+from tkinter import Label, ttk
+
+from pyparsing import col
 
 mydb = mysql.connector.connect(
     host = "localhost",
@@ -65,22 +69,50 @@ def crearClientes(nombre, app, apm, email):
     micursor.execute('INSERT INTO Clientes(nombre, app, apm, email) VALUES("'+nombre+'","'+app+'","'+apm+'","'+email+'");')
     mydb.commit()
 
+def obtenerClientes(nombre, app, apm, email):
+    crearClientes(nombre, app, apm, email)
+    ventana = tkinter.Tk()
+    ventana.title("NOTIFICACION")
+    ventana.geometry("")
+    label1 = Label(ventana, text="SE HA CREADO UN CLIENTE")
+    label1.grid(row = 0, column = 0)
+    ventana.mainloop()
+
+def ventanaCrearCliente():
+    ventana = tkinter.Tk()
+    ventana.title("Crear cliente")
+    ventana.geometry("")
+    label1 = Label(ventana, text="INGRESE CLIENTE")
+    boton1 =  tkinter.Button(ventana, text = "Nombre", width=16, height=1, state="disable", disabledforeground=None, relief="sunken")
+    boton2 =  tkinter.Button(ventana, text = "Apellido paterno", width=16, height=1, state="disable", disabledforeground=None, relief="sunken")
+    boton3 =  tkinter.Button(ventana, text = "Apellido materno", width=16, height=1, state="disable", disabledforeground=None, relief="sunken")
+    boton4 =  tkinter.Button(ventana, text = "Email", width=16, height=1, state="disable", disabledforeground=None, relief="sunken")
+    labelNombre = ttk.Entry()
+    labelApp = ttk.Entry()
+    labelApm = ttk.Entry()
+    labelEmail = ttk.Entry()
+    labelvacio = Label(ventana, text="")
+    submit =  tkinter.Button(ventana, text = "GUARDAR", width=16, height=1, command = lambda: obtenerClientes(labelNombre.get(), labelApp.get(), labelApm.get(), labelEmail.get()))
+    label1.grid(row = 0, column = 0)
+    boton1.grid(row = 1, column= 0)
+    boton2.grid(row = 1, column= 1)
+    boton3.grid(row = 1, column= 2)
+    boton4.grid(row = 1, column= 3)
+    labelNombre.grid(row = 2, column = 0)
+    labelApp.grid(row = 2, column = 1)
+    labelApm.grid(row = 2, column = 2)
+    labelEmail.grid(row = 2, column = 3)
+    labelvacio.grid(row = 3, column = 0)
+    submit.grid(row = 4, column = 3)
+    ventana.mainloop()
+
 def ventanaCliente():
     ventana = tkinter.Tk()
     ventana.title("Menu Principal")
     ventana.geometry("900x600")
-    #areaClientes = tkinter.Text(ventana, height=12,width=70)
-    #areaClientes.place(x = 100, y = 48)
-    # entry = ttk.Entry()
-    # entry1 = ttk.Entry()
-    # entry2 = ttk.Entry()
-    # entry3 = ttk.Entry()
-    # entry4 = ttk.Entry()
-    # entry5 = ttk.Entry()
     boton1 =  tkinter.Button(ventana, text = "Ver Clientes", width=16, height=1)
     boton2 =  tkinter.Button(ventana, text = "Crear Clientes", width=16, height=1)
     boton3 =  tkinter.Button(ventana, text = "ayuda", width=16, height=1)
-
     boton1.grid(row= 0, column=0)
     boton2.grid(row= 0, column=1)
     boton3.grid(row= 0, column=2)

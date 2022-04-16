@@ -47,7 +47,9 @@ if __name__ == "__main__":
     # ventanaBienvenida()
     # ventanaPrincipal()
     #Cliente.verClientes()
-    Cliente.ventanaCliente()
+    # Cliente.ventanaCliente()
+    # Cliente.ventanaCrearCliente()
+    Empleado.ventanaCrearEmpleado()
 
 
 
