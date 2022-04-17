@@ -4,8 +4,8 @@
 
 #     def __init__(self, nombre, app, apm, email):
 #         super().__init__(nombre, app, apm, email)
-from cProfile import label
-from faulthandler import disable
+# from cProfile import label
+# from faulthandler import disable
 import mysql.connector
 import tkinter
 from tkinter import Label, ttk

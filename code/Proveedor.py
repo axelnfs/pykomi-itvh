@@ -8,6 +8,7 @@
 #         super().__init__(nombre, app, apm, email)
 #         self.pais = pais
 #         self.nombreEmpresa = nombreEmpresa
+import tkinter
 import mysql.connector
 
 mydb = mysql.connector.connect(
@@ -40,4 +41,11 @@ def buscarProveedor(idProveedor):
 
     for x in result:
         return x
+
+#ventanas
+def ventanaCrearProveedores():
+    ventana = tkinter.Tk()
+    ventana.title("Crear proveedor")
+    ventana.geometry("")
+    
 

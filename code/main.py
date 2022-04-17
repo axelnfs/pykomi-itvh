@@ -50,6 +50,8 @@ if __name__ == "__main__":
     # Cliente.ventanaCliente()
     # Cliente.ventanaCrearCliente()
     Empleado.ventanaCrearEmpleado()
+    # Empleado.ventanaEmpleados()
+    # Empleado.ventanaEliminarEmpleado()
 
 
 
