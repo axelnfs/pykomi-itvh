@@ -98,7 +98,6 @@ def imprimirEmpleados(contadorRow, id, nombre, app, apm, rfc, cargo, vigencia):
     boxCargo.insert(0, cargo)
     boxVigencia.insert(0, vigencia)
 
-
 def verEmpleados():
     micursor = mydb.cursor()
     micursor.execute("SELECT Empleados.id, Empleados.nombre, Empleados.app, Empleados.apm, Empleados.rfc, Cargos.nombre, Empleados.vigencia FROM Empleados INNER JOIN Cargos ON Empleados.idCargo = Cargos.id;")

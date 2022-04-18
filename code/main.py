@@ -49,10 +49,11 @@ if __name__ == "__main__":
     #Cliente.verClientes()
     # Cliente.ventanaCliente()
     # Cliente.ventanaCrearCliente()
-    Empleado.ventanaCrearEmpleado()
+    # Empleado.ventanaCrearEmpleado()
     # Empleado.ventanaEmpleados()
     # Empleado.ventanaEliminarEmpleado()
-
-
+    # Proveedor.ventanaCrearProveedores()
+    # Proveedor.ventanaEliminarProveedor()
+    Proveedor.ventanaProveedores()
 
 

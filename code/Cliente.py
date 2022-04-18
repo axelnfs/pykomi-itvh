@@ -10,8 +10,6 @@ import mysql.connector
 import tkinter
 from tkinter import Label, ttk
 
-from pyparsing import col
-
 mydb = mysql.connector.connect(
     host = "localhost",
     user = "admin",
