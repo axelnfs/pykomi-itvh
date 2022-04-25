@@ -15,3 +15,6 @@
 #         self.empleado = empleado
 #         self.descripcion = descripcion
 #         self.fechaHora = fechaHora
+
+def crearVentas():
+    pass

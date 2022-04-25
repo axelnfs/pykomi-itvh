@@ -34,7 +34,9 @@ def verProductos():
         imprimirProductos(contador,x[0],x[1],x[2],x[3],x[4])
         contador = contador + 1
 
-def crearProductos(nombre, precio, inventario, idProveedor):
+def crearProductos(nombre, precio, inventario, nombreEmpresa):
+    idProveedor = obtenerIdProveedor(nombreEmpresa)
+    idProveedor = str(idProveedor)
     micursor = mydb.cursor()
     micursor.execute('INSERT INTO Productos(nombre, precio, inventario, idProveedor) VALUES("'+nombre+'","'+precio+'","'+inventario+'","'+idProveedor+'");')
     mydb.commit()
@@ -79,7 +81,28 @@ def imprimirProductos(contadorRow, id, nombre, precio, inventario, idProveedor):
     boxInventario.insert(0, inventario)
     boxIdProveedor.insert(0, idProveedor)
 
+def boxProveedores():
+    micursor = mydb.cursor()
+    lista = []
+    micursor.execute("select nombreEmpresa FROM Proveedores;")
+    for x in micursor:
+        lista.append(x[0])
+    return lista
+    # combo = ttk.Combobox(values=lista)
+    # return combo
+
+def obtenerIdProveedor(nombreEmpresa):
+    idProveedor = ''
+    micursor = mydb.cursor()
+    query = "SELECT id FROM Proveedores WHERE nombreEmpresa = '"+nombreEmpresa+"';"
+    print("······················································"+query)
+    micursor.execute(query)
+    for x in micursor:
+        idProveedor = x[0]
+    return idProveedor
+    
 def ventanaCrearProductos():
+    listaEmpresas = boxProveedores()
     ventana = tkinter.Tk()
     ventana.title("INGRESAR PRODUCTO")
     ventana.geometry("")
@@ -91,8 +114,8 @@ def ventanaCrearProductos():
     insertNombre = ttk.Entry()
     insertPrecio = ttk.Entry()
     insertInventario = ttk.Entry()
-    insertIdProveedor = ttk.Entry()
-    submit = tkinter.Button(ventana, text="GUARDAR", width=16, height=1, command= lambda: crearProductos(insertNombre.get(), insertPrecio.get(), insertInventario.get(),insertIdProveedor.get()))
+    insertEmpresaProveedor = ttk.Combobox(values=listaEmpresas)
+    submit = tkinter.Button(ventana, text="GUARDAR", width=16, height=1, command= lambda: crearProductos(insertNombre.get(), insertPrecio.get(), insertInventario.get(), insertEmpresaProveedor.get()))
     labelPrincipal.grid(row = 0,column = 0)
     labelNombre.grid(row = 1,column = 0)
     labelPrecio.grid(row = 2,column = 0)
@@ -101,7 +124,7 @@ def ventanaCrearProductos():
     insertNombre.grid(row = 1, column=1)
     insertPrecio.grid(row = 2, column=1)
     insertInventario.grid(row = 3, column=1)
-    insertIdProveedor.grid(row = 4, column=1)
+    insertEmpresaProveedor.grid(row = 4, column=1)
     submit.grid(row = 6, column = 1)
     ventana.mainloop()
 

@@ -50,8 +50,8 @@ if __name__ == "__main__":
     # Empleado.verEmpleados()
     # Cliente.verClientes()
     # Proveedor.verProveedores()
-    ventanaBienvenida()
-    ventanaPrincipal()
+    # ventanaBienvenida()
+    # ventanaPrincipal()
     #Cliente.verClientes()
     # Cliente.ventanaCliente()
     # Cliente.ventanaCrearCliente()
@@ -62,7 +62,8 @@ if __name__ == "__main__":
     # Proveedor.ventanaEliminarProveedor()
     # Proveedor.ventanaProveedores()
     # Producto.ventanaCrearProductos()
-    # Producto.ventanaCrearProductos()
-    Producto.ventanaProductos()
+    Producto.ventanaCrearProductos()
+    # Producto.ventanaProductos()
+
 
 

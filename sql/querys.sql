@@ -75,6 +75,12 @@ CREATE TABLE Ventas(
     FOREIGN KEY(idEmpleado) REFERENCES Empleados(id)
     );
 
+CREATE VIEW resumenVentas AS
+SELECT Ventas.id, Ventas.fecha, Ventas.hora, Empleados.nombre AS 'EMPLEADONOM', Empleados.app AS 'EMPLADOAPP', Ventas.idCliente AS 'IDCLIENTE', Productos.id AS 'CODIGO', Productos.nombre AS 'PRODUCTO', Ventas.descripcion AS 'DESCRIPCION'
+from Ventas 
+INNER JOIN Empleados ON Ventas.idEmpleado = Empleados.id
+INNER JOIN Productos ON Ventas.idProducto = Productos.id
+
 
 
 
